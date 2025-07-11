@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenanao Sithole - Enhanced Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            display: none;
+            min-height: 100vh;
+            padding: 40px;
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        .slide-container.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        
+        /* Slide 1 - Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .title-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title-slide h1 {
+            font-size: 3.5em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title-slide .subtitle {
+            font-size: 1.4em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .engineering-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            gap: 30px;
+        }
+        
+        .gear-animation {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            position: relative;
+            animation: rotate 4s linear infinite;
+        }
+        
+        .gear-animation::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 16px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2px;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Slide 2 - Partnership */
+        .partnership-slide {
+            padding: 60px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .partnership-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            gap: 40px;
+        }
+        
+        .company-box {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            min-width: 200px;
+        }
+        
+        .plus-icon {
+            font-size: 3em;
+            color: rgba(255,255,255,0.9);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Slide 3 - Expertise Grid */
+        .expertise-slide {
+            padding: 60px;
+        }
+        
+        .expertise-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .expertise-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .expertise-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            backdrop-filter: blur(10px);
+        }
+        
+        .expertise-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .expertise-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .expertise-card li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .expertise-card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-size: 0.8em;
+        }
+        
+        .highlight-box {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Slide 4 - Value Proposition */
+        .value-slide {
+            padding: 60px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .value-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .value-points {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .value-point {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-point:hover {
+            transform: scale(1.02);
+        }
+        
+        .value-point h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .process-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .process-step {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        /* Slide 5 - Strategic Alignment */
+        .strategy-slide {
+            padding: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .strategy-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .strategy-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .alignment-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .alignment-card {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .alignment-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .alignment-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+        
+        /* Slide 6 - Collaboration Framework */
+        .framework-slide {
+            padding: 60px;
+        }
+        
+        .framework-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .framework-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .framework-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .framework-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ff6b6b 0%, #ee5a52 100%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-left: 80px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #ff6b6b;
+        }
+        
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content h4 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #bdc3c7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+        
+        .nav-dot:hover {
+            background: #667eea;
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 20px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .alignment-diagram {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                margin-left: 40px;
+            }
+            
+            .title-slide h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide-container active">
+        <div class="slide title-slide">
+            <div class="title-content">
+                <h1>Kenanao Sithole, MEng</h1>
+                <p class="subtitle">Strategic Technical Advisor for Julzon's Product Development Initiative</p>
+                
+                <div class="engineering-visual">
+                    <div class="gear-animation"></div>
+                    <div style="font-size: 1.5em; margin: 0 20px;">⚙️ → 🏭 → 📈</div>
+                    <div class="gear-animation" style="animation-direction: reverse;"></div>
+                </div>
+                
+                <p style="font-size: 1.1em; margin-top: 30px; opacity: 0.8;">
+                    Transforming Engineering Expertise into Market-Leading Products
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Strategic Partnership -->
+    <div class="slide-container">
+        <div class="slide partnership-slide">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                Strategic Technical Partnership
+            </h2>
+            
+            <div class="partnership-visual">
+                <div class="company-box">
+                    <div style="font-size: 2em; margin-bottom: 15px;">🏢</div>
+                    <h3>Julzon's Market Expertise</h3>
+                    <p style="margin-top: 10px; opacity: 0.9;">Multi-disciplinary engineering firm with established client relationships</p>
+                </div>
+                
+                <div class="plus-icon">+</div>
+                
+                <div class="company-box">
+                    <div style="font-size: 2em; margin-bottom: 15px;">🔬</div>
+                    <h3>Advanced Simulation Capabilities</h3>
+                    <p style="margin-top: 10px; opacity: 0.9;">PhD-level CFD-FEA expertise with proven industrial track record</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; font-size: 1.3em; text-align: center;">
+                <div style="font-size: 3em; margin-bottom: 20px;">↓</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <strong>Market-Leading Engineered Products for Botswana's Infrastructure Sector</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Core Expertise -->
+    <div class="slide-container">
+        <div class="slide expertise-slide">
+            <div class="expertise-header">
+                <h2>Core Technical Expertise</h2>
+                <p style="font-size: 1.2em; color: #7f8c8d;">PhD-Level Engineering Capabilities with Proven Industrial Applications</p>
+            </div>
+            
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Advanced Simulation Expertise</h3>
+                    <ul>
+                        <li>CFD-FEA coupling for complex engineering problems</li>
+                        <li>Thermomechanical analysis of critical components</li>
+                        <li>Multiphase flow modeling (proven with Rolls-Royce)</li>
+                        <li>High-temperature material testing and validation</li>
+                        <li>Structural integrity assessment and optimization</li>
+                    </ul>
+                    <div class="highlight-box">
+                        Software Mastery: ANSYS Fluent, ABAQUS, LS-DYNA, MATLAB, Python
+                    </div>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="card-icon">🏭</div>
+                    <h3>Product Development Experience</h3>
+                    <ul>
+                        <li>Led £30K fluid test rig design and implementation</li>
+                        <li>Collaborated on £200K Rolls-Royce projects</li>
+                        <li>Developed custom engineering solutions from concept to delivery</li>
+                        <li>Managed multidisciplinary teams and supplier coordination</li>
+                        <li>Created technical documentation and validation protocols</li>
+                    </ul>
+                    <div class="highlight-box">
+                        Project Management: Budget control, risk assessment, timeline management
+                    </div>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Local Market Understanding</h3>
+                    <ul>
+                        <li>Understanding of local climate challenges (extreme heat, dust)</li>
+                        <li>Knowledge of Botswana's infrastructure needs</li>
+                        <li>Experience with government-funded projects</li>
+                        <li>Fluent in English and Setswana</li>
+                        <li>Commitment to developing local engineering capabilities</li>
+                    </ul>
+                    <div class="highlight-box">
+                        Cultural Fit: Botswana citizen with international expertise
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Value Proposition -->
+    <div class="slide-container">
+        <div class="slide value-slide">
+            <div class="value-grid">
+                <div class="value-content">
+                    <h2>💡 Value Proposition for Julzon</h2>
+                    
+                    <div class="value-points">
+                        <div class="value-point">
+                            <h4>⚡ Immediate Impact</h4>
+                            <p>Transform Julzon from consultancy to product leader by developing validated, optimized engineered products that outperform imports while being cost-effective for local conditions.</p>
+                        </div>
+                        
+                        <div class="value-point">
+                            <h4>🛡️ Risk Mitigation</h4>
+                            <p>Use advanced simulation to validate designs before manufacturing, eliminating costly field failures and ensuring customer satisfaction.</p>
+                        </div>
+                        
+                        <div class="value-point">
+                            <h4>🏆 Competitive Advantage</h4>
+                            <p>Become the only engineering firm in Botswana offering simulation-validated products with performance guarantees.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-diagram">
+                    <div class="process-step">
+                        <h4>🔍 Design & Simulate</h4>
+                        <p>CFD-FEA validation before manufacturing</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>🔧 Optimize</h4>
+                        <p>40-60% reduction in development costs</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>🏭 Manufacture</h4>
+                        <p>Local production with global quality</p>
+                    </div>
+                    <div class="process-step">
+                        <h4>📈 Scale</h4>
+                        <p>Recurring revenue from proven products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Strategic Alignment -->
+    <div class="slide-container">
+        <div class="slide strategy-slide">
+            <div class="strategy-header">
+                <h2>🎯 Strategic Alignment with Julzon's Goals</h2>
+                <p style="opacity: 0.9; font-size: 1.1em;">Enabling Julzon's transformation through technical excellence</p>
+            </div>
+            
+            <div class="alignment-diagram">
+                <div class="alignment-card">
+                    <div class="alignment-icon">🚀</div>
+                    <h3>Product Development</h3>
+                    <p>My expertise directly enables Julzon's pivot from services to engineered products, providing the technical foundation needed for successful product development.</p>
+                </div>
+                
+                <div class="alignment-card">
+                    <div class="alignment-icon">⭐</div>
+                    <h3>Market Differentiation</h3>
+                    <p>Advanced simulation capabilities create products that competitors cannot match, establishing Julzon as the premium engineering solutions provider.</p>
+                </div>
+                
+                <div class="alignment-card">
+                    <div class="alignment-icon">📈</div>
+                    <h3>Revenue Growth</h3>
+                    <p>Move from one-time consulting fees to recurring product sales with higher margins and scalable business model.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Collaboration Framework -->
+    <div class="slide-container">
+        <div class="slide framework-slide">
+            <div class="framework-header">
+                <h2>🤝 Proposed Collaboration Framework</h2>
+                <p style="color: #7f8c8d; font-size: 1.1em;">Structured approach to technical partnership and knowledge transfer</p>
+            </div>
+            
+            <div class="framework-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <div class="timeline-content">
+                        <h4>Technical Advisory Role</h4>
+                        <p>Provide simulation and product development expertise for Julzon's strategic initiatives</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">✅</div>
+                    <div class="timeline-content">
+                        <h4>Product Validation</h4>
+                        <p>Use CFD-FEA analysis to optimize and validate all product designs</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏭</div>
+                    <div class="timeline-content">
+                        <h4>Manufacturing Optimization</h4>
+                        <p>Ensure products are designed for efficient local production</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🔍</div>
+                    <div class="timeline-content">
+                        <h4>Quality Assurance</h4>
+                        <p>Develop testing protocols and performance validation procedures</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">📚</div>
+                    <div class="timeline-content">
+                        <h4>Technical Training</h4>
+                        <p>Transfer knowledge to Julzon's engineering team for long-term capability building</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-dot active" onclick="showSlide(0)"></div>
+        <div class="nav-dot" onclick="showSlide(1)"></div>
+        <div class="nav-dot" onclick="showSlide(2)"></div>
+        <div class="nav-dot" onclick="showSlide(3)"></div>
+        <div class="nav-dot" onclick="showSlide(4)"></div>
+        <div class="nav-dot" onclick="showSlide(5)"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Auto-advance demo (remove for actual presentation)
+        // setInterval(() => {
+        //     showSlide((currentSlide + 1) % slides.length);
+        // }, 10000);
+    </script>
+</body>
+</html>
